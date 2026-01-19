@@ -1,143 +1,118 @@
-# 🌦️ Full Stack Weather App
+# ☀️ WeatherNow
 
-A full-stack weather application that allows users to search for current weather and forecast by city, built with React and Node.js.
+A modern full-stack weather application with real-time weather updates and forecasts for any city worldwide.
 
----
+![WeatherNow](https://img.shields.io/badge/React-18.2-blue) ![Node.js](https://img.shields.io/badge/Node.js-Express-green) ![API](https://img.shields.io/badge/API-OpenWeatherMap-orange)
 
-## 🚀 Tech Stack
+## ✨ Features
 
-### Frontend
-- React (Vite)
+- 🔍 Search weather by city name
+- 📍 Get weather by current location (geolocation)
+- 🌡️ Current weather details (temperature, feels like, humidity, wind)
+- 📅 5-point forecast display
+- ⚡ Server-side caching for performance
+- 🎨 Modern dark theme UI
+- ❌ User-friendly error handling
+- 📱 Responsive design
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- React 18 (Vite)
+- React Router DOM
 - Axios
-- Responsive UI
 
-### Backend
-- Node.js
-- Express
-- Axios
+**Backend**
+- Node.js / Express
 - In-memory caching
-
-### Weather Provider
 - OpenWeatherMap API
 
----
+## 📁 Project Structure
 
-## 📌 Features
-
-- Search weather by city name
-- (Bonus) Search by geolocation (lat/lon)
-- Current weather details:
-  - Temperature
-  - Feels like
-  - Condition
-  - Humidity
-  - Wind speed
-  - Last updated time
-- Forecast (next 5 time points)
-- Loading & error states
-- Server-side caching for performance
-
----
-
-## 📂 Project Structure
-
+```
 weather-app/
-│
 ├── backend/
-│ ├── src/
-│ │ ├── routes/
-│ │ ├── services/
-│ │ ├── utils/
-│ │ └── server.js
-│ └── package.json
-│
+│   └── src/
+│       ├── routes/
+│       ├── services/
+│       ├── utils/
+│       ├── app.js
+│       └── server.js
 ├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ └── api/
-│ └── package.json
-│
+│   └── src/
+│       ├── api/
+│       ├── components/
+│       ├── pages/
+│       ├── App.jsx
+│       └── main.jsx
 └── README.md
+```
 
+## 🚀 Getting Started
 
----
+### Prerequisites
+- Node.js 18+
+- OpenWeatherMap API key ([Get one free](https://openweathermap.org/api))
 
-## ⚙️ Setup Instructions
+### Installation
 
-### 1️⃣ Clone Repository
+1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/weather-app.git
+git clone https://github.com/Ismile999/weather.git
 cd weather-app
+```
 
-2️⃣ Backend Setup
+2. **Install dependencies**
+```bash
+npm run install:all
+```
 
-cd backend
-npm install
+3. **Configure environment variables**
 
-Create .env file:
+Backend (`backend/.env`):
+```
 PORT=5000
 WEATHER_API_KEY=your_openweather_api_key
+```
 
-Run backend:
-npm run dev
-
-Backend runs on:
-http://localhost:5000
-
-3️⃣ Frontend Setup
-cd frontend
-npm install
-
-Create .env file:
+Frontend (`frontend/.env`):
+```
 VITE_API_URL=http://localhost:5000/api
+```
 
-Run frontend:
+4. **Run the application**
+```bash
 npm run dev
+```
 
-Frontend runs on:
-http://localhost:5173
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
 
+## 🔌 API Endpoints
 
-🔌 API Endpoints
-Get Current Weather
-GET /api/weather?city=London
-GET /api/weather?lat=12.97&lon=77.59
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/weather?city=London` | Get weather by city |
+| GET | `/api/weather?lat=51.5&lon=-0.12` | Get weather by coordinates |
+| GET | `/api/forecast?city=London` | Get forecast by city |
+| GET | `/api/forecast?lat=51.5&lon=-0.12` | Get forecast by coordinates |
+| GET | `/health` | Health check |
 
-Get Forecast
-GET /api/forecast?city=London
+## 🧠 Caching
 
+- Current weather: 10 minutes TTL
+- Forecast: 30 minutes TTL
+- In-memory cache (resets on server restart)
 
-🧠 Caching Strategy
-Current weather cached for 10 minutes
-Forecast cached for 30 minutes
-Reduces API calls & improves response time
-Implemented using in-memory cache (can be replaced with Redis in production)
+## 📝 Notes
 
+- Uses metric units (°C, km/h)
+- No database required
+- Location feature requires browser permission
 
-🌍 Deployment
-Backend
-Deploy on Render / Railway
-Add environment variables in dashboard
+## 📄 License
 
-Frontend
-Deploy on Vercel
-Set VITE_API_URL to backend URL
-
-
-⚠️ Assumptions & Limitations
-No database used
-Metric units only (°C)
-In-memory cache resets on server restart
-
-
-✨ Future Improvements
-Redis caching
-Weather icons
-Unit toggle (°C / °F)
-Dark mode
-Daily forecast view
-
+MIT
 
 👤 Author
 Ismile Khan
