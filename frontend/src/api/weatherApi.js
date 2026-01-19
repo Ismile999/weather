@@ -7,5 +7,11 @@ const API = axios.create({
 export const fetchWeather = (city) =>
   API.get(`/weather?city=${city}`);
 
+export const fetchWeatherByCoords = (lat, lon) =>
+  API.get(`/weather?lat=${lat}&lon=${lon}`);
+
 export const fetchForecast = (city) =>
   API.get(`/forecast?city=${city}`);
+
+export const fetchForecastByCoords = (lat, lon) =>
+  API.get(`/forecast?lat=${lat}&lon=${lon}`);

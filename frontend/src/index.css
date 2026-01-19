@@ -1,18 +1,16 @@
-/* CSS Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Global styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1f2e 0%, #0f1419 100%);
+  min-height: 100vh;
+  color: #ffffff;
 }
 
-/* Utility */
-button {
-  cursor: pointer;
+#root {
+  min-height: 100vh;
 }

@@ -41,16 +41,28 @@ exports.getWeather = async (req, res) => {
 
 exports.getForecast = async (req, res) => {
     try {
-        const { city } = req.query;
-        if (!city) return res.status(400).json({ error: 'City required' });
+        const { city, lat, lon } = req.query;
+        
+        if (!city && (!lat || !lon)) {
+            return res.status(400).json({ error: 'City or coordinates required' });
+        }
 
-        const cacheKey = `forecast:${city.toLowerCase()}`;
+        let cacheKey;
+        let url;
+
+        if (city) {
+            cacheKey = `forecast:${city.toLowerCase()}`;
+            url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
+        } else {
+            cacheKey = `forecast:${lat},${lon}`;
+            url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
+        }
+
         const cached = getCache(cacheKey);
         if (cached) {
             return res.json(cached);
         }
 
-        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`;
         const response = await axios.get(url);
 
         const mapped = mapForecast(response.data);
